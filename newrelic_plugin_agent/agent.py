@@ -17,7 +17,14 @@ import time
 from newrelic_plugin_agent import __version__
 from newrelic_plugin_agent import plugins
 
+from pythonjsonlogger import jsonlogger
+
+
 LOGGER = logging.getLogger(__name__)
+logHandler = logging.StreamHandler()
+formatter = jsonlogger.JsonFormatter()
+logHandler.setFormatter(formatter)
+LOGGER.addHandler(logHandler)
 
 
 class NewRelicPluginAgent(helper.Controller):
